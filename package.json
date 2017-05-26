@@ -1,0 +1,19 @@
+{
+  "name": "headlines",
+  "version": "1.0.0",
+  "description": "News Feed Application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IsaacKay/headlines.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IsaacKay/headlines/issues"
+  },
+  "homepage": "https://github.com/IsaacKay/headlines#readme"
+}
