@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events';
-import dispatcher from './dispatcher';
+import dispatcher from '../dispatcher';
 
 /**
  * @description SourceStore stores models for Sources component.
@@ -16,7 +16,7 @@ class SourcesStore extends EventEmitter {
   }
 
   /**
-   * @returns {Array} -An array of all created sources
+   * @returns {object[]} -An array of all created sources
    */
   getAllNewsSources() {
     return this.sources;
