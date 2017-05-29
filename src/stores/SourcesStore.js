@@ -18,7 +18,7 @@ class SourcesStore extends EventEmitter {
   /**
    * @returns {Array} -An array of all created sources
    */
-  getAllSources() {
+  getAllNewsSources() {
     return this.sources;
   }
   /**
