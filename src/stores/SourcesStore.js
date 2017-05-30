@@ -11,8 +11,8 @@ class SourcesStore extends EventEmitter {
    */
   constructor() {
     super();
+    this.getAllNewsSources.bind(this);
     this.sources = [];
-    this.handleActions.bind(this);
   }
 
   /**
@@ -29,7 +29,7 @@ class SourcesStore extends EventEmitter {
   handleActions(action) {
     switch (action.type) {
       case 'CREATE_SOURCES':
-        this.sources = action.source;
+        this.sources = action.sources;
         this.emit('change');
         break;
       default:
@@ -38,5 +38,6 @@ class SourcesStore extends EventEmitter {
   }
 }
 const sourcesStore = new SourcesStore();
-dispatcher.register(sourcesStore.handleActions);
+
+dispatcher.register(sourcesStore.handleActions.bind(sourcesStore));
 export default sourcesStore;
