@@ -1,6 +1,6 @@
 import React from 'react';
 import sourcesStore from '../stores/SourcesStore';
-import SourcesActions from '../actions/SourcesActions';
+import SourcesActions from '../actions/Actions';
 import Source from '../components/Source.jsx';
 
 /**
