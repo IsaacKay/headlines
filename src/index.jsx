@@ -1,8 +1,17 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 import ReactDom from 'react-dom';
+import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+import Articles from './pages/Articles.jsx';
+import Sources from './pages/Sources.jsx';
 
 ReactDom.render(
-  <div>Hello World</div>,
+  <Router history={hashHistory}>
+    <Route path="/">
+      <IndexRoute component={Sources} />
+      <Route path="sources" component={Sources} />
+      <Route path="articles/:source/:sortBy" component={Articles} />
+    </Route>
+  </Router>,
   document.getElementById('root')
 );
