@@ -10,7 +10,7 @@ ReactDom.render(
     <Route path="/">
       <IndexRoute component={Sources} />
       <Route path="sources" component={Sources} />
-      <Route path="articles/:source/:sortBy" component={Articles} />
+      <Route path="articles" component={Articles} />
     </Route>
   </Router>,
   document.getElementById('root')

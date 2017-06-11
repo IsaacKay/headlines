@@ -60,3 +60,6 @@ typings/
 # ignore vscode settings
 .vscode
 
+# auto-generated files
+package-lock.json
+
