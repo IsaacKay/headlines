@@ -22,6 +22,15 @@ export default class SourcesActions {
     });
   }
   /**
+   * @description dispatches CREATE_SOURCES action when there is no
+   * using HeadlinesUtils
+   * @returns {undefined}
+   */
+  static getSources() {
+    HU.getSources(SourcesActions.handleGetSources);
+  }
+
+  /**
    * @description Dispatches article action
    * it is used as callback in this.HU.getArticles()
    * @param {object} response -XMLHttpRequest response from axios
