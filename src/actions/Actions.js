@@ -22,11 +22,26 @@ export default class SourcesActions {
     });
   }
   /**
-   * @description dispatches CREATE_SOURCES action when there is no
-   * using HeadlinesUtils
-   * @returns {undefined}
+   * @description Dispatches article action
+   * it is used as callback in this.HU.getArticles()
+   * @param {object} response -XMLHttpRequest response from axios
+   * @returns {void}
    */
-  static getSources() {
-    HU.getSources(SourcesActions.handleGetSources);
+  static handleGetArticles(response) {
+    const { articles } = response.data;
+    dispatcher.dispatch({
+      type: 'CREATE_ARTICLES',
+      articles
+    });
+  }
+  /**
+   * @description dispatches CREATE_ARTICLES action when there is no
+   * using HeadlinesUtils
+   * @param {string} source - Articles news source
+   * @param {string} sortBy - sort parameter
+   * @returns {void}
+   */
+  static getArticles(source, sortBy) {
+    HU.getArticles(source, sortBy, SourcesActions.handleGetArticles);
   }
 }
