@@ -1,5 +1,8 @@
 import webpack from 'webpack';
 import path from 'path';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const debug = process.env.NODE_ENV !== 'production';
 
@@ -14,7 +17,22 @@ const config = {
     path: `${__dirname}/src/`,
     filename: 'bundle.js'
   },
-  plugins: debug ? [] : [
+  plugins: debug ? [
+    new webpack.DefinePlugin({
+      process: {
+        env: {
+          API_KEY: JSON.stringify(process.env.API_KEY)
+        }
+      }
+    })
+  ] : [
+    new webpack.DefinePlugin({
+      process: {
+        env: {
+          API_KEY: process.env.API_KEY
+        }
+      }
+    }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
