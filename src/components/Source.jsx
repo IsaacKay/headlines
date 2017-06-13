@@ -22,10 +22,10 @@ export default class Source extends React.Component {
       url,
       sortBysAvailable,
       description } = this.props.source;
-
+    const sortBys = sortBysAvailable.join(',');
     const comp = (
       <div>
-        <Link to={`/sources/:${id}/:${sortBysAvailable}`}><h3>{name}</h3></Link>
+        <Link to={`articles?source=${id}&sortBy=${sortBys}`}><h3>{name}</h3></Link>
         <br />
         <h5>Category: {category}</h5>
         <p>{description}</p>
