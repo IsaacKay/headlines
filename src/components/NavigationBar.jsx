@@ -1,10 +1,11 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import * as ReactBootstrap from 'react-bootstrap';
 import { Link } from 'react-router';
 
 const { Nav, Navbar, NavItem } = ReactBootstrap;
 const NavigationBar = (() => {
-  return (
+  const navBar = (
     <Navbar inverse collapseOnSelect>
       <Navbar.Header>
         <Navbar.Brand>
@@ -19,5 +20,6 @@ const NavigationBar = (() => {
       </Navbar.Collapse>
     </Navbar>
   );
+  return navBar;
 });
 export default NavigationBar;
