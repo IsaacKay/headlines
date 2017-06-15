@@ -1,6 +1,7 @@
 import React from 'react';
 import * as ReactBootstrap from 'react-bootstrap';
 import { Link } from 'react-router';
+import { LinkContainer } from 'react-router-bootstrap';
 
 const { Nav, Navbar, NavItem, Button } = ReactBootstrap;
 
@@ -38,9 +39,11 @@ export default class NavigationBar extends React.Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
+            <LinkContainer to="sources">
             <NavItem className={sourceClass} eventKey={1}>
-              <Link to="sources">Sources</Link>
+              Sources
             </NavItem>
+            </LinkContainer>
           </Nav>
           <Nav className="pull-right">
             <NavItem eventKey={2}>

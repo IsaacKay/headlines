@@ -47,6 +47,9 @@ export default class Articles extends React.Component {
     this.dispatchArticles();
     articlesStore.on('change', this.loadArticles);
   }
+  componentWillUnmount() {
+    articlesStore.removeListener('change', this.loadArticles);
+  }
   /**
    * @description Maps array of articles object into array of articles components
    * @returns {JSX.Element[]} Array of news articles elements
