@@ -14,6 +14,7 @@ export default class Sources extends React.Component {
     super();
     this.handleSearchSource = this.handleSearchSource.bind(this);
     this.searchSource = this.searchSource.bind(this);
+    this.getAllNewsSources = this.getAllNewsSources.bind(this);
     this.state = { sources: [] };
   }
   /**
@@ -30,9 +31,18 @@ export default class Sources extends React.Component {
    * set sources state
    * @returns {void}
    */
-  componentWillMount() {
+  componentDidMount() {
     SourcesActions.getSources();
-    sourcesStore.on('change', this.getAllNewsSources.bind(this));
+    sourcesStore.on('change', this.getAllNewsSources);
+  }
+  /**
+   * @description removes all listeners before unmounting
+   * @returns {void}
+   */
+  componentWillUnmount() {
+    sourcesStore.removeListener('change', this.getAllNewsSources);
+    const searchBox = this.refs.searchBox;
+    searchBox.removeEventListener('onchange', this.getAllNewsSources);
   }
   /**
    * @description Maps array of source object into array of source components
@@ -90,7 +100,7 @@ export default class Sources extends React.Component {
     const sources = this.makeActualSourcesComponents();
     return (
       <div>
-        <input id="search" type="text" onChange={this.handleSearchSource} />
+        <input id="search" type="text" ref="searchBox" onChange={this.handleSearchSource} />
         {sources}
       </div>
     );
