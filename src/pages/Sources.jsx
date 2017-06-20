@@ -1,6 +1,7 @@
 import React from 'react';
+import { Col } from 'react-bootstrap';
 import sourcesStore from '../stores/SourcesStore';
-import SourcesActions from '../actions/SourcesActions';
+import SourcesActions from '../actions/Actions';
 import Source from '../components/Source.jsx';
 
 /**
@@ -14,6 +15,7 @@ export default class Sources extends React.Component {
     super();
     this.handleSearchSource = this.handleSearchSource.bind(this);
     this.searchSource = this.searchSource.bind(this);
+    this.getAllNewsSources = this.getAllNewsSources.bind(this);
     this.state = { sources: [] };
   }
   /**
@@ -30,9 +32,18 @@ export default class Sources extends React.Component {
    * set sources state
    * @returns {void}
    */
-  componentWillMount() {
+  componentDidMount() {
     SourcesActions.getSources();
-    sourcesStore.on('change', this.getAllNewsSources.bind(this));
+    sourcesStore.on('change', this.getAllNewsSources);
+  }
+  /**
+   * @description removes all listeners before unmounting
+   * @returns {void}
+   */
+  componentWillUnmount() {
+    sourcesStore.removeListener('change', this.getAllNewsSources);
+    const searchBox = this.refs.searchBox;
+    searchBox.removeEventListener('onchange', this.getAllNewsSources);
   }
   /**
    * @description Maps array of source object into array of source components
@@ -89,10 +100,17 @@ export default class Sources extends React.Component {
   render() {
     const sources = this.makeActualSourcesComponents();
     return (
-      <div>
-        <input id="search" type="text" onChange={this.handleSearchSource} />
+      <Col md={10} sm={10} mdPush={1} smPush={1} >
+        <input
+        className="col-md-12 col-sm-12 col-xs-12 search-box"
+        id="search"
+        type="text"
+        ref="searchBox"
+        placeholder="Tired of scrolling? why not search instead"
+        onChange={this.handleSearchSource} />
+        <br />
         {sources}
-      </div>
+      </Col>
     );
   }
 }
