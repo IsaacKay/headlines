@@ -5,12 +5,11 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const debug = process.env.NODE_ENV !== 'production';
-
 const config = {
   context: path.join(__dirname, 'src'),
-  devtool: debug ? 'inline-sourcemap' : null,
+  devtool: debug ? 'inline-sourcemap' : false,
   resolve: {
-    extensions: ['', '.jsx', '.js']
+    extensions: ['.jsx', '.js']
   },
   entry: `${__dirname}/src/index.jsx`,
   output: {
@@ -24,19 +23,17 @@ const config = {
           API_KEY: JSON.stringify(process.env.API_KEY)
         }
       }
-    })
-  ] : [
-    new webpack.DefinePlugin({
-      process: {
-        env: {
-          API_KEY: process.env.API_KEY
-        }
-      }
     }),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
-  ],
+  ] : [
+      new webpack.DefinePlugin({
+        process: {
+          env: {
+            API_KEY: process.env.API_KEY
+          }
+        }
+      }),
+      new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
+    ],
   module: {
     loaders: [
       {
@@ -47,8 +44,14 @@ const config = {
           presets: ['react', 'es2015', 'stage-0'],
           plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy'],
         }
+      },
+      {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader']
       }
     ]
   },
+  watch: true
 };
 export default config;
+
