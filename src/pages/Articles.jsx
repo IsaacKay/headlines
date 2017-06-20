@@ -1,5 +1,6 @@
 import React from 'react';
 import shortid from 'shortid';
+import { Thumbnail, Row } from 'react-bootstrap';
 import articlesStore from '../stores/ArticlesStore';
 import Actions from '../actions/Actions';
 import Article from '../components/Article.jsx';
@@ -17,7 +18,7 @@ export default class Articles extends React.Component {
     this.dispatchArticles = this.dispatchArticles.bind(this);
     this.loadArticles = this.loadArticles.bind(this);
     this.getArticlesWithNewSort = this.getArticlesWithNewSort.bind(this);
-    this.state = { articles: [], sortParams: [] };
+    this.state = { articles: [], sortParams: [], currentSort: 'top' };
   }
   /**
    * @description Used in  component did mount to dispatch news articles and set
@@ -51,7 +52,8 @@ export default class Articles extends React.Component {
     articlesStore.removeListener('change', this.loadArticles);
   }
   /**
-   * @description Maps array of articles object into array of articles components
+   * @description Maps array of articles object into array of articles 
+   * components
    * @returns {JSX.Element[]} Array of news articles elements
    */
   makeActualArticlesComponents() {
@@ -74,7 +76,7 @@ export default class Articles extends React.Component {
     const source = this.props.location.query.source;
     Actions.getArticles(source, sortBy);
     const articles = articlesStore.getAllNewsArticles();
-    this.setState({ articles });
+    this.setState({ articles, currentSort: sortBy });
   }
   /**
    * @description Renders an array of articles
@@ -83,14 +85,17 @@ export default class Articles extends React.Component {
   render() {
     const articles = this.makeActualArticlesComponents();
     return (
-      <div>
+      <Row>
         <SortSelect
+          selectedButton={this.state.currentSort}
           sortParams={this.state.sortParams}
-          selectedIndex={this.sortSelected}
           getArticlesWithSort={this.getArticlesWithNewSort}
         />
+        <h2 className="text-center">
+          Showing {this.state.currentSort} Articles 
+        </h2>
         {articles}
-      </div>
+      </Row>
     );
   }
 }

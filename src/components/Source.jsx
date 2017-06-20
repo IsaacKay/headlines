@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { Col } from 'react-bootstrap';
 
 /**
  * @description - A Component for a Single News source.
@@ -24,13 +25,17 @@ export default class Source extends React.Component {
       description } = this.props.source;
     const sortBys = sortBysAvailable.join(',');
     const comp = (
-      <div>
-        <Link to={`articles?source=${id}&sortBy=${sortBys}`}><h3>{name}</h3></Link>
-        <br />
-        <h5>Category: {category}</h5>
-        <p>{description}</p>
-        <a href={url}>Goto Website</a>
-      </div>
+      <Col sm={10} md={10} lg={10} mdPush={1} lgPush={1} smPush={1} >
+        <div className="source source-cont">
+          <Link to={`articles?source=${id}&sortBy=${sortBys}`}>
+            <h3>{name}</h3>
+            <br />
+            <h5>Category: {category}</h5>
+            <p>{description}</p>
+          </Link>
+          <a className="ordinaryLink" href={url}>Goto Website</a>
+        </div>
+      </Col>
     );
     return comp;
   }

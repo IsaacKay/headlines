@@ -6,6 +6,7 @@ import Articles from './pages/Articles.jsx';
 import Sources from './pages/Sources.jsx';
 import Layout from './pages/Layout.jsx';
 import Login from './pages/Login.jsx';
+import './styles/style.scss';
 
 ReactDom.render(
   <Router history={hashHistory}>

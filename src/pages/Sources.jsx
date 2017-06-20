@@ -1,4 +1,5 @@
 import React from 'react';
+import { Col } from 'react-bootstrap';
 import sourcesStore from '../stores/SourcesStore';
 import SourcesActions from '../actions/Actions';
 import Source from '../components/Source.jsx';
@@ -99,10 +100,17 @@ export default class Sources extends React.Component {
   render() {
     const sources = this.makeActualSourcesComponents();
     return (
-      <div>
-        <input id="search" type="text" ref="searchBox" onChange={this.handleSearchSource} />
+      <Col md={10} sm={10} mdPush={1} smPush={1} >
+        <input
+        className="col-md-12 col-sm-12 col-xs-12 search-box"
+        id="search"
+        type="text"
+        ref="searchBox"
+        placeholder="Tired of scrolling? why not search instead"
+        onChange={this.handleSearchSource} />
+        <br />
         {sources}
-      </div>
+      </Col>
     );
   }
 }

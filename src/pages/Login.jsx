@@ -2,6 +2,8 @@
 import React from 'react';
 import GoogleLogin from 'react-google-login';
 
+const clientId = '658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'
+
 /**
  * @description -Component for google login button
  */
@@ -27,12 +29,19 @@ export default class Login extends React.Component {
    */
   render() {
     const gLogin = (
-      <GoogleLogin
-        clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
-        buttonText="Login With Google+"
-        onSuccess={Login.responseSuccess}
-        onFailure={this.responseFailure}
-      />
+
+      <div className="login-container">
+        <div className="text-center gbutton-container">
+          <h2>Stay updated with news round the world</h2>
+          <h4>Login to get started</h4>
+          <GoogleLogin
+            clientId={clientId}
+            buttonText="Login With Google+"
+            onSuccess={Login.responseSuccess}
+            onFailure={this.responseFailure}
+          />
+        </div>
+      </div>
     );
     return gLogin;
   }

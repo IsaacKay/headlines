@@ -1,0 +1,30 @@
+.source {
+  box-shadow: 0 2px 4px 0 gray,  0 3px 6px 0 gray;
+  margin: 1.5em 0 1.5em 0;
+  padding: 2em;
+  border: 1px solid darkgray;
+  transition: box-shadow 0.3s ease-in-out; }
+
+.source:hover {
+  box-shadow: 0 4px 8px 0 gray, 0 5px 10px 0 gray; }
+
+.ordinaryLink {
+  color: #084B82; }
+
+.article-image {
+  margin: auto;
+  display: block;
+  width: 100%; }
+
+.article {
+  height: 550px; }
+
+html {
+  background: purple; }
+
+body {
+  background: url("") no-repeat;
+  background-size: cover;
+  -o-background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover; }

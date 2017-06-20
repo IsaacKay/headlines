@@ -1,4 +1,5 @@
 import React from 'react';
+import { Grid } from 'react-bootstrap';
 import NavigationBar from '../components/NavigationBar.jsx';
 
 /**
@@ -12,10 +13,12 @@ export default class Layout extends React.Component {
    */
   render() {
     return (
-        <div>
-          <NavigationBar location={this.props.location}/>
+      <div>
+        <NavigationBar location={this.props.location} />
+        <Grid>
           {this.props.children}
-        </div>
+        </Grid>
+      </div>
     );
   }
 }

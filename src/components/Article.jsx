@@ -1,4 +1,5 @@
 import React from 'react';
+import { Col, Thumbnail } from 'react-bootstrap';
 /**
  * @description A single article component which contains
  * Article description, author's name ,url to the full article
@@ -20,14 +21,19 @@ export default class Article extends React.Component {
     } = this.props.article;
     return (
       <div>
-        <div>
-          <img alt="artilcle image" src={urlToImage} />
-        </div>
-        <h3>{title}</h3>
-        <h5><em>By {author}</em></h5>
-        <p>{description}</p>
-        <h6>Published At: {publishedAt}</h6>
-        <a href={url} target="blank">Open in browser</a>
+        <Col md={6} sm={12}>
+          <Thumbnail
+          alt="artilcle image"
+          src={urlToImage}
+          className="article-image">
+            <h3>{title}</h3>
+            <div className="desc-container">
+              <p>{description}</p>
+            </div>
+            <h6>Published At: {publishedAt}</h6>
+            <a href={url} target="blank">Open in browser</a>
+          </Thumbnail>
+        </Col>
       </div>
     );
   }

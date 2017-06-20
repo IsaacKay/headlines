@@ -1,5 +1,6 @@
 import React from 'react';
 import shortid from 'shortid';
+import { Button, ButtonGroup } from 'react-bootstrap';
 
 /**
  * @description Articles subComponent which contains buttons for
@@ -12,19 +13,18 @@ export default class SortSelect extends React.Component {
    */
   render() {
     const sortParams = this.props.sortParams;
-    const selectedIndex = this.props.selectedIndex;
     const sortSelectOptions = sortParams.map((sortParam) => {
-      const optionElement = (<button
+      const optionElement = (<Button
         key={shortid.generate()}
         onClick={this.props.getArticlesWithSort}>
         {sortParam}
-      </button>);
+      </Button>);
       return optionElement;
     });
     const sortSelect = (
-      <div value={selectedIndex} ref="sortSelect">
-        {sortSelectOptions}
-      </div>
+        <ButtonGroup className="btngroup-container">
+          {sortSelectOptions}
+        </ButtonGroup>
     );
     return sortSelect;
   }

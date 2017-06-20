@@ -1,6 +1,5 @@
 import React from 'react';
 import * as ReactBootstrap from 'react-bootstrap';
-import { Link } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
 
 const { Nav, Navbar, NavItem, Button } = ReactBootstrap;
@@ -30,7 +29,7 @@ export default class NavigationBar extends React.Component {
       sourceClass = '';
     }
     const navBar = (
-      <Navbar inverse collapseOnSelect>
+      <Navbar inverse collapseOnSelect fixedTop className="navigation">
         <Navbar.Header>
           <Navbar.Brand>
             <a href="#">International Aproko</a>
